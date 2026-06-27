@@ -60,16 +60,16 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center pt-20 lg:pt-0"
+      className="relative min-h-screen flex flex-col justify-start lg:justify-center pt-32 lg:pt-0 pb-24 lg:pb-0"
     >
       <HeroBackground />
 
-      <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-8 w-full z-10">
+      <div className="flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-between gap-8 md:gap-12 w-full z-10">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex-1 w-full lg:max-w-2xl"
+          className="flex-1 w-full lg:max-w-2xl flex flex-col items-center lg:items-start text-center lg:text-left"
         >
           <motion.div
           initial={{ opacity: 0, x: -12 }}
@@ -85,23 +85,25 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.6 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-mono font-bold text-text-main mb-6"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-mono font-bold text-text-main mb-6 text-center lg:text-left w-full"
         >
           {personal.name}
         </motion.h1>
 
-        <div className="flex flex-col sm:flex-row sm:items-center text-text-main/90 font-mono text-lg md:text-xl mb-12 min-h-[32px]">
+        <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start text-text-main/90 font-mono text-base md:text-xl mb-10 min-h-[48px] sm:min-h-[32px] w-full text-center lg:text-left">
           <span className="mr-2 text-accent hidden sm:inline">{">"}</span>
-          <span className="mr-2 text-accent sm:hidden">{">"}</span>
-          <span>{typedTagline}</span>
-          <motion.span
-            animate={{ opacity: [1, 0] }}
-            transition={{ repeat: Infinity, duration: 0.8 }}
-            className="w-3 h-6 bg-accent inline-block ml-1 align-middle"
-          />
+          <span className="text-accent sm:hidden mb-2">{">"}</span>
+          <div className="flex items-center">
+            <span>{typedTagline}</span>
+            <motion.span
+              animate={{ opacity: [1, 0] }}
+              transition={{ repeat: Infinity, duration: 0.8 }}
+              className="w-2 md:w-3 h-5 md:h-6 bg-accent inline-block ml-1 align-middle"
+            />
+          </div>
         </div>
 
-        <div className="font-mono text-sm md:text-base text-text-muted mb-6">
+        <div className="font-mono text-sm md:text-base text-text-muted mb-6 w-full text-center lg:text-left">
           <span className="text-accent">$</span> ./connect --links
         </div>
 
@@ -109,7 +111,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
-          className="flex flex-wrap gap-4 font-mono"
+          className="flex flex-wrap gap-4 font-mono justify-center lg:justify-start"
         >
           <a
             href={personal.links.github}
@@ -158,7 +160,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ delay: 0.2, duration: 0.8, type: "spring" }}
-          className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-[350px] lg:h-[350px] rounded-full overflow-hidden border-4 border-accent/20 shadow-[0_0_50px_rgba(99,102,241,0.15)] flex-shrink-0"
+          className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-[350px] lg:h-[350px] rounded-full overflow-hidden border-4 border-accent/20 shadow-[0_0_50px_rgba(99,102,241,0.15)] flex-shrink-0"
         >
           <Image
             src="/profile.jpeg"

@@ -27,7 +27,7 @@ export const skills: SkillsData = {
   languages: ["C++", "JavaScript", "TypeScript", "Python", "Go", "C"],
   frontend: ["React.js", "Next.js", "Tailwind CSS", "HTML", "CSS", "ShadCN UI", "Framer Motion"],
   backend: ["Node.js", "Express.js", "Go", "REST APIs", "WebSockets", "FastAPI"],
-  databases: ["MongoDB", "PostgreSQL", "Supabase"],
+  databases: ["MongoDB", "PostgreSQL", "Supabase", "Redis"],
   tools: ["Git", "GitHub", "Docker", "Linux", "Vite", "Firebase", "AWS (EC2, S3)", "n8n", "GitHub Actions"],
   ai: ["Prompt Engineering", "Vector Databases", "Pinecone", "FAISS", "LLM APIs", "LangChain", "NLP"],
   concepts: ["Data Structures & Algorithms", "System Design", "Microservices", "Event-Driven Architecture", "API Optimization", "Agile"],

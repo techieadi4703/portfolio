@@ -24,6 +24,7 @@ const getIcon = (skill: string) => {
     "MongoDB": DevIcons.MongodbOriginal,
     "PostgreSQL": DevIcons.PostgresqlOriginal,
     "Supabase": DevIcons.SupabaseOriginal,
+    "Redis": DevIcons.RedisOriginal,
     "Git": DevIcons.GitOriginal,
     "GitHub": DevIcons.GithubOriginal,
     "Docker": DevIcons.DockerOriginal,
@@ -109,7 +110,7 @@ export default function Skills() {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, margin: "-60px" }}
-                className="flex overflow-x-auto pb-4 no-scrollbar gap-3 -mx-6 px-6 lg:mx-0 lg:px-0 lg:flex-wrap lg:overflow-visible"
+                className="flex flex-wrap gap-3 pb-2"
               >
                 {(items as string[]).map((skill: string) => {
                   return (

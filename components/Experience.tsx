@@ -56,15 +56,15 @@ export default function Experience() {
                 </span>
               </div>
 
-              <div className="flex items-center gap-2 text-accent font-medium mb-4">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-accent font-medium mb-4">
                 {job.link ? (
-                  <a href={job.link} target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center gap-1.5">
-                    {job.company} <ExternalLink size={14} />
+                  <a href={job.link} target="_blank" rel="noopener noreferrer" className="hover:underline inline-flex items-center gap-1.5 w-fit">
+                    {job.company} <ExternalLink size={14} className="flex-shrink-0" />
                   </a>
                 ) : (
                   <span>{job.company}</span>
                 )}
-                <span className="text-text-muted text-sm font-normal">— {job.location}</span>
+                <span className="text-text-muted text-sm font-normal sm:border-l sm:border-text-muted/30 sm:pl-2">— {job.location}</span>
               </div>
 
               <ul className="space-y-3">
