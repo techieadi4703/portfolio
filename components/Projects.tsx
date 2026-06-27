@@ -1,21 +1,44 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { projects } from "@/data";
 import { ExternalLink, Activity } from "lucide-react";
 import { GithubOriginal } from "devicons-react";
 import { ProjectData } from "@/types";
 
+const listVariants: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.13 } },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 28 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
+const gridVariants: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+};
+
 const FeaturedProjectCard = ({ project }: { project: ProjectData }) => (
-  <div className="group relative flex flex-col md:flex-row gap-6 p-6 rounded-xl bg-text-muted/5 border border-text-muted/10 hover:border-accent/50 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-    {/* Subtle glow effect on hover */}
-    <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/5 transition-colors duration-300 pointer-events-none" />
-    
+  <motion.div
+    variants={cardVariants}
+    whileHover={{ boxShadow: "0 0 36px -6px rgba(99,102,241,0.28)" }}
+    transition={{ boxShadow: { duration: 0.3 } }}
+    className="group relative flex flex-col md:flex-row gap-6 p-6 rounded-xl bg-text-muted/5 border border-text-muted/10 hover:border-accent/40 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+  >
+    <div className="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-accent/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
     <div className="flex-1 flex flex-col justify-between">
       <div>
         <div className="flex justify-between items-start mb-2">
           <div>
-            <h3 className="text-2xl font-bold text-text-main group-hover:text-accent transition-colors">
+            <h3 className="text-2xl font-bold text-text-main group-hover:text-accent transition-colors duration-200">
               {project.name}
             </h3>
             <p className="text-sm font-mono text-accent/80 mt-1">{project.tagline}</p>
@@ -23,10 +46,12 @@ const FeaturedProjectCard = ({ project }: { project: ProjectData }) => (
           <div className="flex gap-3 text-text-muted">
             {project.github && (
               <a href={project.github} target="_blank" rel="noreferrer" className="hover:text-accent transition-colors" aria-label="GitHub Repository">
-                <GithubOriginal size={20} />
+                <div className="bg-text-main rounded-full w-[20px] h-[20px] flex items-center justify-center">
+                  <GithubOriginal size={22} />
+                </div>
               </a>
             )}
-            {project.live && (
+            {project.live && project.live !== "#" && (
               <a href={project.live} target="_blank" rel="noreferrer" className="hover:text-accent transition-colors" aria-label="Live Demo">
                 <ExternalLink size={20} />
               </a>
@@ -58,16 +83,21 @@ const FeaturedProjectCard = ({ project }: { project: ProjectData }) => (
         ))}
       </div>
     </div>
-  </div>
+  </motion.div>
 );
 
 const CompactProjectCard = ({ project }: { project: ProjectData }) => (
-  <div className="group relative flex flex-col h-full p-5 rounded-xl bg-text-muted/5 border border-text-muted/10 hover:border-accent/50 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-    <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/5 transition-colors duration-300 pointer-events-none" />
-    
+  <motion.div
+    variants={cardVariants}
+    whileHover={{ boxShadow: "0 0 24px -6px rgba(99,102,241,0.22)" }}
+    transition={{ boxShadow: { duration: 0.3 } }}
+    className="group relative flex flex-col h-full p-5 rounded-xl bg-text-muted/5 border border-text-muted/10 hover:border-accent/40 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+  >
+    <div className="absolute -top-10 -right-10 w-28 h-28 rounded-full bg-accent/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
     <div className="flex justify-between items-start mb-4">
       <div>
-        <h3 className="text-lg font-bold text-text-main group-hover:text-accent transition-colors">
+        <h3 className="text-lg font-bold text-text-main group-hover:text-accent transition-colors duration-200">
           {project.name}
         </h3>
         <p className="text-xs font-mono text-accent/80 mt-1">{project.tagline}</p>
@@ -75,10 +105,12 @@ const CompactProjectCard = ({ project }: { project: ProjectData }) => (
       <div className="flex gap-2 text-text-muted">
         {project.github && (
           <a href={project.github} target="_blank" rel="noreferrer" className="hover:text-accent transition-colors" aria-label="GitHub Repository">
-            <GithubOriginal size={18} />
+            <div className="bg-text-main rounded-full w-[18px] h-[18px] flex items-center justify-center">
+              <GithubOriginal size={20} />
+            </div>
           </a>
         )}
-        {project.live && (
+        {project.live && project.live !== "#" && (
           <a href={project.live} target="_blank" rel="noreferrer" className="hover:text-accent transition-colors" aria-label="Live Demo">
             <ExternalLink size={18} />
           </a>
@@ -97,7 +129,7 @@ const CompactProjectCard = ({ project }: { project: ProjectData }) => (
         </span>
       ))}
     </div>
-  </div>
+  </motion.div>
 );
 
 export default function Projects() {
@@ -117,21 +149,33 @@ export default function Projects() {
           Projects
         </h2>
 
-        {/* Featured Projects */}
-        <div className="space-y-8 mb-16">
+        <motion.div
+          variants={listVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="space-y-8 mb-16"
+        >
           {featuredProjects.map((project, idx) => (
             <FeaturedProjectCard key={idx} project={project} />
           ))}
-        </div>
+        </motion.div>
 
-        {/* Other Projects Grid */}
         <div>
-          <h3 className="text-sm font-mono font-bold text-text-main mb-6">Other Noteworthy Projects</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <h3 className="text-sm font-mono font-bold text-text-main mb-6">
+            Other Noteworthy Projects
+          </h3>
+          <motion.div
+            variants={gridVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          >
             {otherProjects.map((project, idx) => (
               <CompactProjectCard key={idx} project={project} />
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.div>
     </section>

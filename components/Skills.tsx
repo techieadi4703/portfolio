@@ -1,11 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { skills } from "@/data";
 import * as DevIcons from "devicons-react";
 import { Terminal } from "lucide-react";
 
-// Helper to map skill string to devicon component if available
 const getIcon = (skill: string) => {
   const mapping: Record<string, React.ElementType> = {
     "C++": DevIcons.CplusplusOriginal,
@@ -33,8 +32,24 @@ const getIcon = (skill: string) => {
     "Firebase": DevIcons.FirebaseOriginal,
     "AWS (EC2, S3)": DevIcons.AmazonwebservicesOriginalWordmark,
   };
+  return mapping[skill] || Terminal;
+};
 
-  return mapping[skill] || Terminal; // Fallback icon
+const pillContainer: Variants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.055, delayChildren: 0.05 },
+  },
+};
+
+const pillItem: Variants = {
+  hidden: { opacity: 0, y: 10, scale: 0.88 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: "spring", stiffness: 280, damping: 20 },
+  },
 };
 
 export default function Skills() {
@@ -57,22 +72,27 @@ export default function Skills() {
               <h3 className="text-xs font-mono uppercase tracking-wider text-accent pl-1">
                 {category}
               </h3>
-              
-              {/* Horizontal scrollable row */}
-              <div className="flex overflow-x-auto pb-4 no-scrollbar gap-3 -mx-6 px-6 lg:mx-0 lg:px-0 lg:flex-wrap lg:overflow-visible">
+              <motion.div
+                variants={pillContainer}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-60px" }}
+                className="flex overflow-x-auto pb-4 no-scrollbar gap-3 -mx-6 px-6 lg:mx-0 lg:px-0 lg:flex-wrap lg:overflow-visible"
+              >
                 {(items as string[]).map((skill: string) => {
-                  const IconComponent = getIcon(skill);
+                  const Icon = getIcon(skill);
                   return (
-                    <div
+                    <motion.div
                       key={skill}
-                      className="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-text-muted/5 border border-text-muted/20 rounded-full text-sm font-medium text-text-main transition-colors hover:border-accent/50 hover:bg-text-muted/10"
+                      variants={pillItem}
+                      className="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-text-muted/5 border border-text-muted/20 rounded-full text-sm font-medium text-text-main transition-colors hover:border-accent/50 hover:bg-accent/5 hover:text-accent group"
                     >
-                      <IconComponent size={16} className="text-text-main" />
+                      <Icon size={16} className="flex-shrink-0 drop-shadow-[0_0_2px_rgba(255,255,255,0.4)] group-hover:drop-shadow-none" />
                       <span>{skill}</span>
-                    </div>
+                    </motion.div>
                   );
                 })}
-              </div>
+              </motion.div>
             </div>
           ))}
         </div>
