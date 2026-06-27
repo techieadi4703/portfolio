@@ -103,35 +103,38 @@ export default function Skills() {
           </h2>
         </div>
 
-        <div className="space-y-10">
-          {Object.entries(skills).map(([category, items]) => (
-            <div key={category} className="space-y-4">
-              <h3 className="text-xs font-mono uppercase tracking-wider text-accent pl-1">
+        <motion.div
+          variants={pillContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-60px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+        >
+          {Object.entries(skills).map(([category, items], index, array) => (
+            <motion.div 
+              key={category} 
+              variants={pillItem}
+              className={`p-8 rounded-2xl bg-[#0A0A0A] border border-text-muted/10 hover:border-text-muted/40 transition-colors duration-500 group ${
+                index === array.length - 1 ? "md:col-span-2 lg:col-span-3" : ""
+              }`}
+            >
+              <h3 className="text-[10px] font-mono uppercase tracking-[0.3em] text-accent mb-6">
                 {category}
               </h3>
-              <motion.div
-                variants={pillContainer}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: "-60px" }}
-                className="flex flex-wrap gap-3 pb-2"
-              >
-                {(items as string[]).map((skill: string) => {
-                  return (
-                    <motion.div
-                      key={skill}
-                      variants={pillItem}
-                      className="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-text-muted/5 border border-text-muted/20 rounded-full text-sm font-medium text-text-main transition-colors hover:border-accent/50 hover:bg-accent/5 hover:text-accent group"
-                    >
-                      {getIcon(skill)}
-                      <span>{skill}</span>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
-            </div>
+              <div className="flex flex-wrap gap-2">
+                {(items as string[]).map((skill: string) => (
+                  <div
+                    key={skill}
+                    className="flex items-center gap-2 px-2.5 py-1.5 bg-white/5 border border-white/5 rounded-md text-[10px] font-mono uppercase tracking-widest text-text-muted group-hover:border-white/10 group-hover:text-white/90 transition-all duration-300"
+                  >
+                    {getIcon(skill)}
+                    <span>{skill}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </motion.div>
     </section>
   );

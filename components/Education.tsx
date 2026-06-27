@@ -23,86 +23,77 @@ export default function Education() {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-sm font-mono font-bold text-text-muted uppercase tracking-widest mb-12 flex items-center">
-          <span className="w-8 h-px bg-accent mr-4"></span>
-          Education
-        </h2>
+        <div className="space-y-4 mb-16">
+          <div className="text-xs font-mono uppercase tracking-[0.3em] text-text-muted">
+            03 / Education
+          </div>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-sans font-bold leading-[0.95] tracking-tight text-text-main">
+            Academic <span className="text-text-muted font-medium">foundation.</span>
+          </h2>
+        </div>
 
-        <div className="space-y-6">
-          {education.map((edu, idx) => (
-            <div key={idx} className="p-8 rounded-xl bg-text-muted/5 border border-text-muted/10 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none">
-                <GraduationCap size={120} className="text-accent" />
-              </div>
+        <div className="mt-20 relative">
+          {/* Central Line */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/15 to-transparent md:-translate-x-1/2" />
+          
+          <div className="space-y-20">
+            {education.map((edu, idx) => (
+              <motion.div
+                key={idx}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-100px" }}
+                className="relative grid md:grid-cols-2 gap-6 md:gap-16 group"
+              >
+                {/* Timeline Dot */}
+                <div className="absolute left-4 md:left-1/2 top-2 -translate-x-1/2 w-3 h-3 rounded-full bg-accent shadow-[0_0_15px_var(--color-accent)] animate-pulse-dot z-10" />
 
-              <div className="relative z-10">
-                <h3 className="text-2xl font-bold text-text-main mb-2">
-                  {edu.degree}
-                </h3>
-                
-                <div className="text-lg text-accent font-medium mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                  <span>{edu.institution}</span>
-                  <span className="text-sm font-mono text-text-muted mt-1 sm:mt-0">
+                {/* Left Column: Date & Location */}
+                <div className="pl-12 md:pl-0 md:text-right md:pr-12">
+                  <div className="text-xs font-mono uppercase tracking-[0.22em] text-text-muted">
                     {edu.duration}
-                  </span>
+                  </div>
+                  {edu.location && (
+                    <div className="mt-2 text-xs text-text-muted/60">
+                      {edu.location}
+                    </div>
+                  )}
                 </div>
 
-                {edu.location && (
-                  <div className="flex items-center gap-2 text-text-muted text-sm mb-8">
-                    <MapPin size={16} />
-                    <span>{edu.location}</span>
+                {/* Right Column: Content */}
+                <div className="pl-12 md:pl-0">
+                  <div className="text-xs font-mono uppercase tracking-[0.22em] text-accent/80">
+                    {edu.institution}
                   </div>
-                )}
+                  
+                  <h3 className="mt-2 font-display text-3xl font-bold text-text-main group-hover:text-accent transition-colors duration-300">
+                    {edu.degree}
+                  </h3>
 
-                {edu.performance && edu.performance.length > 0 && (
-                  <div>
-                    <h4 className="text-sm font-mono uppercase tracking-wider text-text-main mb-4">Academic Performance</h4>
-                    <motion.ul
-                      variants={courseworkContainer}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true }}
-                      className="space-y-2"
-                    >
+                  {edu.performance && edu.performance.length > 0 && (
+                    <ul className="mt-4 space-y-3">
                       {edu.performance.map((perf: string, perfIdx: number) => (
-                        <motion.li
-                          key={perfIdx}
-                          variants={courseItem}
-                          className="text-sm text-text-muted font-medium flex items-center gap-3"
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-accent/50 shrink-0" />
-                          {perf}
-                        </motion.li>
+                        <li key={perfIdx} className="text-sm text-text-main/80 flex items-start">
+                          <span className="text-accent mr-3 mt-1.5 w-1 h-1 rounded-full shrink-0" />
+                          <span className="font-medium">{perf}</span>
+                        </li>
                       ))}
-                    </motion.ul>
-                  </div>
-                )}
+                    </ul>
+                  )}
 
-                {edu.coursework && edu.coursework.length > 0 && (
-                  <div>
-                    <h4 className="text-sm font-mono uppercase tracking-wider text-text-main mb-4">Relevant Coursework</h4>
-                    <motion.div
-                      variants={courseworkContainer}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true }}
-                      className="flex flex-wrap gap-2"
-                    >
+                  {edu.coursework && edu.coursework.length > 0 && (
+                    <div className="mt-6 flex flex-wrap gap-2">
                       {edu.coursework.map((course: string, courseIdx: number) => (
-                        <motion.span
-                          key={courseIdx}
-                          variants={courseItem}
-                          className="px-3 py-1.5 bg-base border border-text-muted/20 rounded-md text-sm text-text-muted font-medium hover:border-accent/50 hover:text-text-main transition-colors"
-                        >
+                        <span key={courseIdx} className="px-2.5 py-1 rounded-md text-[10px] font-mono uppercase tracking-[0.14em] bg-white/5 border border-white/5 text-text-muted">
                           {course}
-                        </motion.span>
+                        </span>
                       ))}
-                    </motion.div>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </motion.div>
     </section>

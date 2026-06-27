@@ -54,26 +54,29 @@ export default function CustomCursor() {
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9998] rounded-full border border-indigo-500/50"
+        className="fixed top-0 left-0 pointer-events-none z-[9998] rounded-full border transition-colors duration-300 shadow-[0_0_15px_rgba(99,102,241,0)]"
         style={{ x: rx, y: ry, translateX: "-50%", translateY: "-50%" }}
         animate={{
-          width: hovering ? 44 : 28,
-          height: hovering ? 44 : 28,
+          width: hovering ? 64 : 28,
+          height: hovering ? 64 : 28,
+          borderColor: hovering ? "rgba(99, 102, 241, 0.7)" : "rgba(255, 255, 255, 0.15)",
+          backgroundColor: hovering ? "rgba(99, 102, 241, 0.08)" : "transparent",
+          boxShadow: hovering ? "0 0 20px rgba(99, 102, 241, 0.3)" : "0 0 0px rgba(99,102,241,0)",
           opacity: visible ? 1 : 0,
         }}
         transition={{
-          width: { duration: 0.2, ease: "easeOut" },
-          height: { duration: 0.2, ease: "easeOut" },
+          width: { type: "spring", stiffness: 150, damping: 15 },
+          height: { type: "spring", stiffness: 150, damping: 15 },
           opacity: { duration: 0.3 },
         }}
       />
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full"
+        className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full shadow-[0_0_10px_rgba(99,102,241,0.5)]"
         style={{ x: mx, y: my, translateX: "-50%", translateY: "-50%" }}
         animate={{
-          width: 5,
-          height: 5,
-          backgroundColor: hovering ? "#6366F1" : "#F1F5F9",
+          width: hovering ? 6 : 6,
+          height: hovering ? 6 : 6,
+          backgroundColor: "#6366F1",
           opacity: visible ? 1 : 0,
         }}
         transition={{ duration: 0.15 }}

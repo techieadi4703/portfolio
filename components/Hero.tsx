@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { personal } from "@/data";
-import { Mail, FileText } from "lucide-react";
+import { Mail, FileText, Code } from "lucide-react";
 import { GithubOriginal, LinkedinOriginal } from "devicons-react";
 
 const useTypewriter = (text: string, speed = 50) => {
@@ -103,10 +103,6 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="font-mono text-sm md:text-base text-text-muted mb-6 w-full text-center lg:text-left">
-          <span className="text-accent mr-2">$</span>
-          <span className="opacity-80">./connect --links</span>
-        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -124,7 +120,7 @@ export default function Hero() {
             <div className="bg-text-main rounded-full w-[18px] h-[18px] flex items-center justify-center">
               <GithubOriginal size={20} />
             </div>
-            <span>--github</span>
+            <span>github</span>
           </a>
           <a
             href={personal.links.linkedin}
@@ -134,7 +130,7 @@ export default function Hero() {
             className="flex items-center gap-2 px-4 py-2 border border-white/10 rounded-lg hover:border-accent/50 hover:bg-accent/10 hover:text-accent hover:-translate-y-1 transition-all duration-300 bg-white/5 backdrop-blur-sm"
           >
             <LinkedinOriginal size={18} />
-            <span>--linkedin</span>
+            <span>linkedin</span>
           </a>
           <a
             href={`mailto:${personal.email}`}
@@ -142,17 +138,27 @@ export default function Hero() {
             className="flex items-center gap-2 px-4 py-2 border border-white/10 rounded-lg hover:border-accent/50 hover:bg-accent/10 hover:text-accent hover:-translate-y-1 transition-all duration-300 bg-white/5 backdrop-blur-sm"
           >
             <Mail size={18} />
-            <span>--email</span>
+            <span>email</span>
+          </a>
+          <a
+            href={personal.links.leetcode}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LeetCode Profile"
+            className="flex items-center gap-2 px-4 py-2 border border-white/10 rounded-lg hover:border-accent/50 hover:bg-accent/10 hover:text-accent hover:-translate-y-1 transition-all duration-300 bg-white/5 backdrop-blur-sm"
+          >
+            <Code size={18} />
+            <span>leetcode</span>
           </a>
           <a
             href={personal.links.resume}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="View Resume"
-            className="flex items-center gap-2 px-4 py-2 border border-accent/50 text-accent rounded-lg hover:bg-accent/20 hover:-translate-y-1 transition-all duration-300 bg-accent/10 backdrop-blur-sm shadow-[0_0_15px_rgba(99,102,241,0.2)]"
+            className="flex items-center gap-2 px-4 py-2 border border-white/10 rounded-lg hover:border-accent/50 hover:bg-accent/10 hover:text-accent hover:-translate-y-1 transition-all duration-300 bg-white/5 backdrop-blur-sm"
           >
             <FileText size={18} />
-            <span>--resume</span>
+            <span>resume</span>
           </a>
           </motion.div>
         </motion.div>

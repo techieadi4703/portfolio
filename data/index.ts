@@ -24,26 +24,16 @@ export const personal: PersonalData = {
 };
 
 export const skills: SkillsData = {
-  languages: ["C++", "JavaScript", "TypeScript", "Python", "Go", "C"],
+  languages: ["C++", "JavaScript", "TypeScript", "C", "Python", "Go",],
   frontend: ["React.js", "Next.js", "Tailwind CSS", "HTML", "CSS", "ShadCN UI", "Framer Motion"],
-  backend: ["Node.js", "Express.js", "Go", "REST APIs", "WebSockets", "FastAPI"],
-  databases: ["MongoDB", "PostgreSQL", "Supabase", "Redis"],
+  backend: ["Node.js", "Express.js", "REST APIs", "WebSockets", "FastAPI"],
+  databases: ["MongoDB", "Redis", "PostgreSQL", "Supabase"],
   tools: ["Git", "GitHub", "Docker", "Linux", "Vite", "Firebase", "AWS (EC2, S3)", "n8n", "GitHub Actions"],
-  ai: ["Prompt Engineering", "Vector Databases", "Pinecone", "FAISS", "LLM APIs", "LangChain", "NLP"],
+  ai: ["Prompt Engineering", "Vector Databases", "Pinecone", "FAISS", "LLM APIs", "NLP", "LangChain"],
   concepts: ["Data Structures & Algorithms", "System Design", "Microservices", "Event-Driven Architecture", "API Optimization", "Agile"],
 };
 
 export const experience: ExperienceData[] = [
-  {
-    role: "Open Source Contributor",
-    company: "OWASP Foundation",
-    link: "https://owasp.org/",
-    location: "Remote",
-    duration: "Oct 2025 - Present · 9 mos",
-    bullets: [
-      "Contributed to OWASP Cornucopia, a mechanism in the form of a card game to assist software development teams identify security requirements in Agile, conventional and formal development processes. It is language, platform and technology-agnostic.",
-    ],
-  },
   {
     role: "Founding Software Engineer",
     company: "BuildBazaarX",
@@ -54,6 +44,7 @@ export const experience: ExperienceData[] = [
       "Led end-to-end development of a scalable multi-role marketplace, owning architecture, frontend, backend, database, and deployment while building core systems like authentication, payments, dashboards, and workflows across 10+ modules.",
       "Managed a team of 3–5 junior developers, driving task execution, code reviews, and delivery timelines while optimizing APIs, application performance, and state management to reduce redundant operations by 40%+.",
     ],
+    tech: ["React", "TypeScript", "Node.js", "Supabase", "Razorpay", "Leadership"],
   },
   {
     role: "Software Developer Intern",
@@ -66,6 +57,18 @@ export const experience: ExperienceData[] = [
       "Refactored the header UI with structured state management, implementing 4+ dropdowns and 6+ reusable modals (onboarding, alerts, profile), improving navigation efficiency and component maintainability.",
       "Built automated monitoring infrastructure using n8n workflows and a Python FastAPI service to verify price feed integrity at market open, triggering real-time Slack alerts and reducing manual intervention.",
     ],
+    tech: ["React", "State Management", "n8n", "Python", "FastAPI", "WebSockets"],
+  },
+  {
+    role: "Open Source Contributor",
+    company: "OWASP Foundation",
+    link: "https://owasp.org/",
+    location: "Remote",
+    duration: "Oct 2025 - Present · 9 mos",
+    bullets: [
+      "Contributed to OWASP Cornucopia, a mechanism in the form of a card game to assist software development teams identify security requirements in Agile, conventional and formal development processes. It is language, platform and technology-agnostic.",
+    ],
+    tech: ["Open Source", "Security", "Agile", "Agile Security Requirements"],
   },
   // {
   //   role: "Software Development Intern",
@@ -81,10 +84,10 @@ export const experience: ExperienceData[] = [
 export const projects: ProjectData[] = [
   {
     name: "BuildBazaarX",
-    tagline: "Multi-Role Construction Marketplace",
-    description: "A scalable marketplace supporting 4 distinct user roles across 10+ functional modules, with Razorpay live payments, HMAC verification via Supabase Edge Functions, dynamic cost estimation with 60+ inputs, and cross-device cart persistence.",
-    tech: ["React", "TypeScript", "Tailwind CSS", "Supabase", "Razorpay"],
-    metrics: ["100+ active sessions", "sub-300ms payment latency", "40% API optimization", "~30% cart retention lift"],
+    tagline: "Smart Construction Marketplace",
+    description: "BuildBazaarX is a modern construction commerce platform that brings interior design discovery, material purchasing, execution cost estimation, secure payments, and order management into one seamless experience. Built with Supabase, Razorpay, and a scalable React architecture, it streamlines the complete journey from planning to checkout.",
+    tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "Razorpay", "TanStack Query", "ShadCN UI", "Framer Motion", "Zod"],
+    metrics: ["Secure online payments", "Smart execution cost estimation", "Real time commerce platform", "End to end shopping experience"],
     live: "https://buildbazaarx.com/",
     github: null, // private repo
     featured: true,
@@ -92,14 +95,25 @@ export const projects: ProjectData[] = [
   },
   {
     name: "Tikki Trades",
-    tagline: "AI-Powered Trading Platform",
-    description: "Real-time trading platform with data from Finnhub across 5000+ global stocks, live P&L updates under 200ms, Inngest-powered price alerting (1000+ evaluations/day), and an AI trade journal powered by Gemini analyzing entries for bias, risk, and strategy.",
-    tech: ["Next.js", "React", "Node.js", "MongoDB", "Inngest", "Gemini", "Groq", "Finnhub API"],
-    metrics: ["99%+ data availability", "5000+ stocks", "<200ms updates", "1000+ alert evaluations/day"],
+    tagline: "AI Powered Trading Intelligence Platform",
+    description: "Tikki Trades is a modern AI powered trading terminal that combines live market intelligence, portfolio analytics, technical charting, and intelligent trading assistance into one seamless experience. Built with Next.js and multiple LLMs, it helps traders analyze markets, manage portfolios, evaluate trading decisions, and receive AI driven insights through a professional financial dashboard.",
+    tech: ["Next.js", "TypeScript", "MongoDB", "Better Auth", "Gemini", "Groq", "Inngest", "Finnhub", "TradingView"],
+    metrics: ["Real time global market intelligence", "AI powered trading assistant", "Portfolio analytics and tracking", "Intelligent trading journal"],
     live: "https://tikki-trades.vercel.app/",
     github: null,
     featured: true,
     image: "/tikkitrades.jpeg",
+  },
+  {
+    name: "SehatSetu",
+    tagline: "AI Powered Healthcare Management Platform",
+    description: "A collaborative healthcare platform that connects patients, doctors, and healthcare staff through a unified digital ecosystem. Built with secure authentication, appointment scheduling, AI assisted consultations, real time video calling, digital medical records, prescription management, medical imaging support, and secure online payments to streamline the complete healthcare experience.",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Prisma", "MySQL", "Clerk", "LiveKit", "Stripe", "OpenAI", "Redux", "Framer Motion"],
+    metrics: ["Multi role platform", "AI assisted consultations", "Real time video appointments", "End to end healthcare workflow"],
+    live: "https://sehat-setu-eta.vercel.app/",
+    github: null,
+    featured: true,
+    image: "/sehat-setu.jpeg",
   },
   {
     name: "Visual Learner",
@@ -108,7 +122,7 @@ export const projects: ProjectData[] = [
     tech: ["Python", "LLMs", "Stable Diffusion", "TTS", "FFmpeg", "FastAPI"],
     metrics: [],
     live: "https://mini-p-frontend.vercel.app/",
-    github: null,
+    github: "https://github.com/Aditya-Bajpayee007/miniP-frontend",
     featured: false,
   },
   {
@@ -118,7 +132,7 @@ export const projects: ProjectData[] = [
     tech: ["Python", "Node.js", "n8n", "Web Scraping"],
     metrics: [],
     live: null,
-    github: null,
+    github: "https://github.com/techieadi4703/jobscanner-pro",
     featured: false,
   },
   {
@@ -128,17 +142,7 @@ export const projects: ProjectData[] = [
     tech: ["JavaScript", "Chrome Extension API", "HTML", "CSS"],
     metrics: [],
     live: null,
-    github: "https://github.com/techieadi4703",
-    featured: false,
-  },
-  {
-    name: "VaidyaMitra",
-    tagline: "RAG-Powered Medical Diagnosis System",
-    description: "A Retrieval-Augmented Generation powered medical diagnosis assistant built for an NLP course. Uses vector search over medical knowledge bases to provide contextual diagnostic insights.",
-    tech: ["Python", "RAG", "LangChain", "FAISS", "LLM APIs"],
-    metrics: [],
-    live: null,
-    github: null,
+    github: "https://github.com/techieadi4703/LeetCode-solve-stalker",
     featured: false,
   },
 ];

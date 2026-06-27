@@ -35,53 +35,75 @@ export default function Experience() {
           </h2>
         </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="space-y-12"
-        >
-          {experience.map((job, idx) => (
-            <motion.div
-              key={idx}
-              variants={itemVariants}
-              className="relative pl-6 lg:pl-8 border-l border-text-muted/20 hover:border-accent transition-colors duration-300"
-            >
-              {/* Timeline Dot */}
-              <div className="absolute w-3 h-3 bg-accent rounded-full -left-[6.5px] top-1.5 shadow-[0_0_15px_var(--color-accent)] animate-[pulse_2s_ease-in-out_infinite]" />
+        <div className="mt-20 relative">
+          {/* Central Line */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/15 to-transparent md:-translate-x-1/2" />
+          
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            className="space-y-20"
+          >
+            {experience.map((job, idx) => (
+              <motion.div
+                key={idx}
+                variants={itemVariants}
+                className="relative grid md:grid-cols-2 gap-6 md:gap-16 group"
+              >
+                {/* Timeline Dot */}
+                <div className="absolute left-4 md:left-1/2 top-2 -translate-x-1/2 w-3 h-3 rounded-full bg-accent shadow-[0_0_15px_var(--color-accent)] animate-pulse-dot z-10" />
 
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                <h3 className="text-xl font-bold text-text-main">
-                  {job.role}
-                </h3>
-                <span className="text-xs font-mono text-text-muted mt-1 sm:mt-0 whitespace-nowrap">
-                  {job.duration}
-                </span>
-              </div>
+                {/* Left Column: Date & Location */}
+                <div className="pl-12 md:pl-0 md:text-right md:pr-12">
+                  <div className="text-xs font-mono uppercase tracking-[0.22em] text-text-muted">
+                    {job.duration}
+                  </div>
+                  <div className="mt-2 text-xs text-text-muted/60">
+                    {job.location}
+                  </div>
+                </div>
 
-              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-accent font-medium mb-4">
-                {job.link ? (
-                  <a href={job.link} target="_blank" rel="noopener noreferrer" className="hover:underline inline-flex items-center gap-1.5 w-fit">
-                    {job.company} <ExternalLink size={14} className="flex-shrink-0" />
-                  </a>
-                ) : (
-                  <span>{job.company}</span>
-                )}
-                <span className="text-text-muted text-sm font-normal sm:border-l sm:border-text-muted/30 sm:pl-2">— {job.location}</span>
-              </div>
+                {/* Right Column: Content */}
+                <div className="pl-12 md:pl-0">
+                  <div className="text-xs font-mono uppercase tracking-[0.22em] text-accent/80">
+                    {job.link ? (
+                      <a href={job.link} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors flex items-center gap-1.5 w-fit">
+                        {job.company} <ExternalLink size={12} className="flex-shrink-0" />
+                      </a>
+                    ) : (
+                      <span>{job.company}</span>
+                    )}
+                  </div>
+                  
+                  <h3 className="mt-2 font-display text-3xl font-bold text-text-main group-hover:text-accent transition-colors duration-300">
+                    {job.role}
+                  </h3>
+                  
+                  <ul className="mt-4 space-y-3">
+                    {job.bullets.map((bullet, bIdx) => (
+                      <li key={bIdx} className="text-sm text-text-main/80 leading-relaxed flex items-start">
+                        <span className="text-accent mr-3 mt-1.5 w-1 h-1 rounded-full shrink-0" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-              <ul className="space-y-3">
-                {job.bullets.map((bullet, bIdx) => (
-                  <li key={bIdx} className="text-sm text-text-main/80 flex items-start">
-                    <span className="text-accent mr-2 mt-1">▹</span>
-                    <span className="leading-relaxed">{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </motion.div>
+                  {job.tech && job.tech.length > 0 && (
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {job.tech.map((t, tIdx) => (
+                        <span key={tIdx} className="px-2.5 py-1 rounded-md text-[10px] font-mono uppercase tracking-[0.14em] bg-white/5 border border-white/5 text-text-muted">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </motion.div>
     </section>
   );

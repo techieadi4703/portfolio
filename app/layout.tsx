@@ -41,9 +41,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-base text-text-main`}
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-[#030712] text-text-main relative min-h-screen`}
       >
-        <div className="bg-noise"></div>
+        {/* Ambient Background Glows */}
+        <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
+          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-accent/10 blur-[120px]" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-accent/5 blur-[120px]" />
+        </div>
+        
+        <div className="bg-noise z-[-2]"></div>
         <CustomCursor />
         <ScrollProgress />
         {children}

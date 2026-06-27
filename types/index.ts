@@ -31,6 +31,7 @@ export interface ExperienceData {
   duration: string;
   link?: string;
   bullets: string[];
+  tech: string[];
 }
 
 export interface ProjectData {
