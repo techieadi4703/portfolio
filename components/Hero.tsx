@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { personal } from "@/data";
 import { Mail, FileText } from "lucide-react";
 import { GithubOriginal, LinkedinOriginal } from "devicons-react";
@@ -24,7 +25,7 @@ const useTypewriter = (text: string, speed = 50) => {
 };
 
 const HeroBackground = () => (
-  <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+  <div className="fixed inset-0 w-screen h-screen -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
     <div
       className="absolute w-[500px] h-[500px] rounded-full opacity-[0.12] blur-3xl"
       style={{
@@ -68,6 +69,21 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          className="mb-8 relative w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-accent/30 shadow-[0_0_25px_rgba(99,102,241,0.15)]"
+        >
+          <Image
+            src="/profile.jpeg"
+            alt={personal.name}
+            fill
+            className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+            priority
+          />
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, x: -12 }}
           animate={{ opacity: 1, x: 0 }}

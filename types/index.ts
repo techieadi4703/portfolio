@@ -29,6 +29,7 @@ export interface ExperienceData {
   company: string;
   location: string;
   duration: string;
+  link?: string;
   bullets: string[];
 }
 

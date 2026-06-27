@@ -3,7 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import { skills } from "@/data";
 import * as DevIcons from "devicons-react";
-import { Terminal } from "lucide-react";
+import { Terminal, Workflow, Cloud, Settings, Layers, Code, Database, Braces, MessageSquare, Zap } from "lucide-react";
 
 const getIcon = (skill: string) => {
   const mapping: Record<string, React.ElementType> = {
@@ -31,8 +31,40 @@ const getIcon = (skill: string) => {
     "Vite": DevIcons.VitejsOriginal,
     "Firebase": DevIcons.FirebaseOriginal,
     "AWS (EC2, S3)": DevIcons.AmazonwebservicesOriginalWordmark,
+    "GitHub Actions": DevIcons.GithubOriginal,
+    "n8n": Workflow,
+    "ShadCN UI": Layers,
+    "Framer Motion": Zap,
+    "REST APIs": Cloud,
+    "WebSockets": MessageSquare,
+    "Prompt Engineering": Code,
+    "Vector Databases": Database,
+    "Pinecone": Database,
+    "FAISS": Database,
+    "LLM APIs": Braces,
+    "LangChain": Workflow,
+    "NLP": MessageSquare,
+    "Data Structures & Algorithms": Braces,
+    "System Design": Layers,
+    "Microservices": Workflow,
+    "Event-Driven Architecture": Zap,
+    "API Optimization": Settings,
+    "Agile": Workflow,
   };
-  return mapping[skill] || Terminal;
+  
+  const IconComponent = mapping[skill] || Terminal;
+  
+  const darkIcons = ["GitHub", "Next.js", "Express.js", "AWS (EC2, S3)", "GitHub Actions", "Vite"];
+  
+  if (darkIcons.includes(skill)) {
+    return (
+      <div className="bg-text-main rounded-md flex items-center justify-center p-[2px]">
+        <IconComponent size={14} className="text-base" />
+      </div>
+    );
+  }
+  
+  return <IconComponent size={16} className="flex-shrink-0 drop-shadow-sm" />;
 };
 
 const pillContainer: Variants = {
@@ -80,14 +112,13 @@ export default function Skills() {
                 className="flex overflow-x-auto pb-4 no-scrollbar gap-3 -mx-6 px-6 lg:mx-0 lg:px-0 lg:flex-wrap lg:overflow-visible"
               >
                 {(items as string[]).map((skill: string) => {
-                  const Icon = getIcon(skill);
                   return (
                     <motion.div
                       key={skill}
                       variants={pillItem}
                       className="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-text-muted/5 border border-text-muted/20 rounded-full text-sm font-medium text-text-main transition-colors hover:border-accent/50 hover:bg-accent/5 hover:text-accent group"
                     >
-                      <Icon size={16} className="flex-shrink-0 drop-shadow-[0_0_2px_rgba(255,255,255,0.4)] group-hover:drop-shadow-none" />
+                      {getIcon(skill)}
                       <span>{skill}</span>
                     </motion.div>
                   );

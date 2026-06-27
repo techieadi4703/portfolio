@@ -37,6 +37,7 @@ export const experience: ExperienceData[] = [
   {
     role: "Founding Software Engineer",
     company: "BuildBazaarX",
+    link: "https://buildbazaarx.com/",
     location: "Remote",
     duration: "April 2026 – Present",
     bullets: [
@@ -47,6 +48,7 @@ export const experience: ExperienceData[] = [
   {
     role: "Software Developer Intern",
     company: "OptionX (Ratel Fintech Pvt. Ltd.)",
+    link: "https://optionx.trade/",
     location: "Gurugram, Haryana",
     duration: "May 2025 – July 2025",
     bullets: [
@@ -73,7 +75,7 @@ export const projects: ProjectData[] = [
     description: "A scalable marketplace supporting 4 distinct user roles across 10+ functional modules, with Razorpay live payments, HMAC verification via Supabase Edge Functions, dynamic cost estimation with 60+ inputs, and cross-device cart persistence.",
     tech: ["React", "TypeScript", "Tailwind CSS", "Supabase", "Razorpay"],
     metrics: ["100+ active sessions", "sub-300ms payment latency", "40% API optimization", "~30% cart retention lift"],
-    live: "#", // Add live URL when ready
+    live: "https://buildbazaarx.com/",
     github: null, // private repo
     featured: true,
   },
@@ -83,7 +85,7 @@ export const projects: ProjectData[] = [
     description: "Real-time trading platform with data from Finnhub across 5000+ global stocks, live P&L updates under 200ms, Inngest-powered price alerting (1000+ evaluations/day), and an AI trade journal powered by Gemini analyzing entries for bias, risk, and strategy.",
     tech: ["Next.js", "React", "Node.js", "MongoDB", "Inngest", "Gemini", "Groq", "Finnhub API"],
     metrics: ["99%+ data availability", "5000+ stocks", "<200ms updates", "1000+ alert evaluations/day"],
-    live: "#",
+    live: "https://tikki-trades.vercel.app/",
     github: null,
     featured: true,
   },
@@ -93,7 +95,7 @@ export const projects: ProjectData[] = [
     description: "Educational platform that converts text prompts into narrated MP4 video lectures using LLMs, TTS, Stable Diffusion image generation, and FFmpeg for video assembly.",
     tech: ["Python", "LLMs", "Stable Diffusion", "TTS", "FFmpeg", "FastAPI"],
     metrics: [],
-    live: null,
+    live: "https://mini-p-frontend.vercel.app/",
     github: null,
     featured: false,
   },
@@ -148,7 +150,7 @@ export const education: EducationData = {
 export const achievements: AchievementData[] = [
   {
     title: "LeetCode Knight",
-    detail: "Peak rating 1860 | 600+ problems solved | Top 5% globally | 30+ rated contests",
+    detail: "Rating 1957 | 616 problems solved | Top 3.23% globally | 36 rated contests",
   },
   {
     title: "Codeforces Rated",
@@ -162,8 +164,8 @@ export const achievements: AchievementData[] = [
     title: "HackStreet 3.0 Winner",
     detail: "1st place out of 100+ participants | Built end-to-end solution under hackathon constraints",
   },
-  {
-    title: "Software Development Intern — Infineon Technologies",
-    detail: "Selected for industry internship at a global semiconductor leader",
-  },
+  // {
+  //   title: "Software Development Intern — Infineon Technologies",
+  //   detail: "Selected for industry internship at a global semiconductor leader",
+  // },
 ];

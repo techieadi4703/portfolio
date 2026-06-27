@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { experience } from "@/data";
+import { ExternalLink } from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -55,8 +56,15 @@ export default function Experience() {
                 </span>
               </div>
 
-              <div className="text-accent font-medium mb-4">
-                {job.company} <span className="text-text-muted text-sm font-normal">— {job.location}</span>
+              <div className="flex items-center gap-2 text-accent font-medium mb-4">
+                {job.link ? (
+                  <a href={job.link} target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center gap-1.5">
+                    {job.company} <ExternalLink size={14} />
+                  </a>
+                ) : (
+                  <span>{job.company}</span>
+                )}
+                <span className="text-text-muted text-sm font-normal">— {job.location}</span>
               </div>
 
               <ul className="space-y-3">
