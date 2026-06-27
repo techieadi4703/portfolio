@@ -42,14 +42,16 @@ export interface ProjectData {
   live: string | null;
   github: string | null;
   featured: boolean;
+  image?: string;
 }
 
 export interface EducationData {
   degree: string;
   institution: string;
-  location: string;
+  location?: string;
   duration: string;
-  coursework: string[];
+  coursework?: string[];
+  performance?: string[];
 }
 
 export interface AchievementData {

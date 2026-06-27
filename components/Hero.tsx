@@ -29,7 +29,7 @@ const HeroBackground = () => (
     <div
       className="absolute w-[500px] h-[500px] rounded-full opacity-[0.12] blur-3xl"
       style={{
-        background: "#6366F1",
+        background: "var(--color-accent)",
         bottom: "-120px",
         left: "-80px",
         animation: "blob-float 8s ease-in-out infinite",
@@ -38,7 +38,7 @@ const HeroBackground = () => (
     <div
       className="absolute w-[400px] h-[400px] rounded-full opacity-[0.08] blur-3xl"
       style={{
-        background: "#8B5CF6",
+        background: "var(--color-accent)",
         top: "60px",
         right: "-60px",
         animation: "blob-float-alt 10s ease-in-out infinite",
@@ -47,7 +47,7 @@ const HeroBackground = () => (
     <div
       className="absolute inset-0 opacity-[0.035]"
       style={{
-        backgroundImage: "radial-gradient(circle, #6366F1 1px, transparent 1px)",
+        backgroundImage: "radial-gradient(circle, var(--color-accent) 1px, transparent 1px)",
         backgroundSize: "32px 32px",
       }}
     />
@@ -64,7 +64,7 @@ export default function Hero() {
     >
       <HeroBackground />
 
-      <div className="flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-between gap-8 md:gap-12 w-full z-10">
+      <div className="flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-between gap-8 md:gap-12 w-full z-10 lg:-mt-24">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -85,26 +85,27 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.6 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-mono font-bold text-text-main mb-6 text-center lg:text-left w-full"
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-sans font-bold tracking-tight leading-[0.95] text-text-main mb-6 text-center lg:text-left w-full"
         >
           {personal.name}
         </motion.h1>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start text-text-main/90 font-mono text-base md:text-xl mb-10 min-h-[48px] sm:min-h-[32px] w-full text-center lg:text-left">
-          <span className="mr-2 text-accent hidden sm:inline">{">"}</span>
+        <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center lg:justify-start text-text-main/90 font-mono text-base md:text-xl mb-10 min-h-[64px] md:min-h-[72px] w-full text-center lg:text-left leading-relaxed">
+          <span className="mr-3 text-accent hidden sm:inline-block sm:mt-[2px]">{">"}</span>
           <span className="text-accent sm:hidden mb-2">{">"}</span>
-          <div className="flex items-center">
-            <span>{typedTagline}</span>
+          <div className="text-center sm:text-left flex-1">
+            <span className="inline">{typedTagline}</span>
             <motion.span
               animate={{ opacity: [1, 0] }}
               transition={{ repeat: Infinity, duration: 0.8 }}
-              className="w-2 md:w-3 h-5 md:h-6 bg-accent inline-block ml-1 align-middle"
+              className="w-2.5 md:w-3 h-5 md:h-6 bg-accent inline-block ml-1 align-text-bottom"
             />
           </div>
         </div>
 
         <div className="font-mono text-sm md:text-base text-text-muted mb-6 w-full text-center lg:text-left">
-          <span className="text-accent">$</span> ./connect --links
+          <span className="text-accent mr-2">$</span>
+          <span className="opacity-80">./connect --links</span>
         </div>
 
         <motion.div
@@ -157,18 +158,42 @@ export default function Hero() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ delay: 0.2, duration: 0.8, type: "spring" }}
-          className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-[350px] lg:h-[350px] rounded-full overflow-hidden border-4 border-accent/20 shadow-[0_0_50px_rgba(99,102,241,0.15)] flex-shrink-0"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="relative lg:w-1/2 flex justify-center lg:justify-end mt-8 lg:mt-0"
         >
-          <Image
-            src="/profile.jpeg"
-            alt={personal.name}
-            fill
-            className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
-            priority
-          />
+          <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-[28rem] lg:h-[28rem] rounded-full p-2 bg-gradient-to-tr from-accent/20 to-transparent">
+            <div className="w-full h-full rounded-full overflow-hidden border-2 border-accent/20 relative z-10">
+              <Image
+                src="/profile.jpeg"
+                alt={personal.name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 16rem, (max-width: 1024px) 20rem, 28rem"
+                priority
+              />
+            </div>
+
+            {/* Floating Live Badge */}
+            <div className="absolute top-4 right-4 md:top-8 md:right-8 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-base/90 border border-text-muted/20 shadow-xl backdrop-blur-md z-20 hidden sm:flex">
+               <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+               <span className="text-[10px] font-mono text-text-main/80 uppercase tracking-widest">live</span>
+            </div>
+
+            {/* Floating 'Currently Building' Card */}
+            <div className="absolute -bottom-4 -right-4 lg:-right-12 flex flex-col gap-1 p-4 rounded-2xl bg-base/80 backdrop-blur-md border border-text-muted/20 shadow-2xl z-20 animate-[blob-float_6s_ease-in-out_infinite] hidden sm:flex">
+               <div className="text-[10px] font-mono uppercase tracking-widest text-text-muted mb-1 flex items-center gap-2">
+                 <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_var(--color-accent)] animate-pulse" />
+                 Currently Building
+               </div>
+               <div className="text-sm font-bold text-text-main">BuildBazaarX</div>
+               <div className="text-[10px] text-text-muted font-mono">Multi-Role Marketplace</div>
+            </div>
+            
+            {/* Decorative Ring */}
+            <div className="absolute inset-0 rounded-full border border-text-muted/10 scale-[1.15] -z-10" />
+          </div>
         </motion.div>
       </div>
 

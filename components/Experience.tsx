@@ -26,10 +26,14 @@ export default function Experience() {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-sm font-mono font-bold text-text-muted uppercase tracking-widest mb-12 flex items-center">
-          <span className="w-8 h-px bg-accent mr-4"></span>
-          Experience
-        </h2>
+        <div className="space-y-4 mb-16">
+          <div className="text-xs font-mono uppercase tracking-[0.3em] text-text-muted">
+            01 / Experience
+          </div>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-sans font-bold leading-[0.95] tracking-tight text-text-main">
+            A track record <span className="text-text-muted font-medium">of building.</span>
+          </h2>
+        </div>
 
         <motion.div
           variants={containerVariants}
@@ -45,7 +49,7 @@ export default function Experience() {
               className="relative pl-6 lg:pl-8 border-l border-text-muted/20 hover:border-accent transition-colors duration-300"
             >
               {/* Timeline Dot */}
-              <div className="absolute w-3 h-3 bg-base border-2 border-accent rounded-full -left-[6.5px] top-1.5" />
+              <div className="absolute w-3 h-3 bg-accent rounded-full -left-[6.5px] top-1.5 shadow-[0_0_15px_var(--color-accent)] animate-[pulse_2s_ease-in-out_infinite]" />
 
               <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
                 <h3 className="text-xl font-bold text-text-main">

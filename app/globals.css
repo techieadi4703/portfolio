@@ -25,7 +25,10 @@ body {
 }
 
 @media (pointer: fine) {
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     cursor: none !important;
   }
 }
@@ -38,7 +41,7 @@ body {
   height: 100vh;
   pointer-events: none;
   z-index: 50;
-  opacity: 0.03;
+  opacity: 0.05;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
@@ -47,8 +50,13 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -56,24 +64,57 @@ html {
   }
 }
 
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
 @keyframes blob-float {
-  0%, 100% { transform: translate(0px, 0px) scale(1); }
-  33%       { transform: translate(28px, -22px) scale(1.04); }
-  66%       { transform: translate(-18px, 14px) scale(0.97); }
+
+  0%,
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  33% {
+    transform: translate(28px, -22px) scale(1.04);
+  }
+
+  66% {
+    transform: translate(-18px, 14px) scale(0.97);
+  }
 }
 
 @keyframes blob-float-alt {
-  0%, 100% { transform: translate(0px, 0px) scale(1); }
-  33%       { transform: translate(-24px, 18px) scale(1.03); }
-  66%       { transform: translate(20px, -12px) scale(0.98); }
+
+  0%,
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  33% {
+    transform: translate(-24px, 18px) scale(1.03);
+  }
+
+  66% {
+    transform: translate(20px, -12px) scale(0.98);
+  }
 }
 
 @keyframes availability-pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.3; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
 }
 
 .availability-dot {

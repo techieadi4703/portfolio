@@ -5,6 +5,7 @@ import { projects } from "@/data";
 import { ExternalLink, Activity } from "lucide-react";
 import { GithubOriginal } from "devicons-react";
 import { ProjectData } from "@/types";
+import Image from "next/image";
 
 const listVariants: Variants = {
   hidden: {},
@@ -25,66 +26,107 @@ const gridVariants: Variants = {
   show: { transition: { staggerChildren: 0.08 } },
 };
 
-const FeaturedProjectCard = ({ project }: { project: ProjectData }) => (
+const FeaturedProjectCard = ({ project, index }: { project: ProjectData; index: number }) => {
+  const isEven = index % 2 === 0;
+  return (
   <motion.div
     variants={cardVariants}
-    whileHover={{ boxShadow: "0 0 36px -6px rgba(99,102,241,0.28)" }}
-    transition={{ boxShadow: { duration: 0.3 } }}
-    className="group relative flex flex-col md:flex-row gap-6 p-6 rounded-xl bg-text-muted/5 border border-text-muted/10 hover:border-accent/40 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+    className={`group relative flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-12 items-center mb-24 last:mb-0`}
   >
-    <div className="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-accent/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-    <div className="flex-1 flex flex-col justify-between">
-      <div>
-        <div className="flex justify-between items-start mb-2">
-          <div>
-            <h3 className="text-2xl font-bold text-text-main group-hover:text-accent transition-colors duration-200">
-              {project.name}
-            </h3>
-            <p className="text-sm font-mono text-accent/80 mt-1">{project.tagline}</p>
+    {/* Visual Container */}
+    <div className="w-full lg:w-[55%] relative aspect-[4/3] rounded-2xl overflow-hidden bg-base border border-text-muted/10 group-hover:border-accent/30 transition-colors duration-500 shadow-2xl">
+      {project.image ? (
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src={project.image}
+            alt={`${project.name} preview`}
+            fill
+            className="object-cover object-top hover:scale-105 transition-transform duration-700"
+            sizes="(max-width: 1024px) 100vw, 55vw"
+          />
+        </div>
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-br from-text-muted/5 to-transparent p-4 sm:p-6 flex flex-col">
+          <div className="flex items-center gap-1.5 mb-4 sm:mb-6">
+            <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
+            <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
+            <span className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
+            <span className="ml-2 text-[10px] font-mono text-text-muted">{project.name.toLowerCase()} · live</span>
           </div>
-          <div className="flex gap-3 text-text-muted">
-            {project.github && (
-              <a href={project.github} target="_blank" rel="noreferrer" className="hover:text-accent transition-colors" aria-label="GitHub Repository">
-                <div className="bg-text-main rounded-full w-[20px] h-[20px] flex items-center justify-center">
-                  <GithubOriginal size={22} />
-                </div>
-              </a>
-            )}
-            {project.live && project.live !== "#" && (
-              <a href={project.live} target="_blank" rel="noreferrer" className="hover:text-accent transition-colors" aria-label="Live Demo">
-                <ExternalLink size={20} />
-              </a>
-            )}
+          
+          <div className="flex-1 border border-text-muted/10 rounded-xl bg-base/50 relative overflow-hidden flex items-center justify-center">
+            {/* Abstract Background Glow */}
+            <div className="absolute w-40 h-40 bg-accent/20 rounded-full blur-[50px] group-hover:bg-accent/30 transition-colors duration-500" />
+            
+            {/* Mock Visual Content */}
+            <div className="w-full h-full p-6 flex flex-col justify-end gap-2 opacity-50 group-hover:opacity-100 transition-opacity duration-500 z-10">
+               {/* Fake code/data bars */}
+               <div className="w-3/4 h-2 rounded-full bg-text-muted/20" />
+               <div className="w-1/2 h-2 rounded-full bg-text-muted/20" />
+               <div className="w-5/6 h-2 rounded-full bg-accent/40" />
+               <div className="w-1/3 h-2 rounded-full bg-text-muted/20" />
+               <div className="flex items-center gap-2 mt-4">
+                 <Activity className="w-4 h-4 text-accent" />
+                 <span className="text-xs font-mono text-accent">status: optimal</span>
+               </div>
+            </div>
           </div>
         </div>
+      )}
+    </div>
 
-        <p className="text-sm text-text-main/80 leading-relaxed mb-6 mt-4">
-          {project.description}
-        </p>
-
-        {project.metrics && project.metrics.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-6">
-            {project.metrics.map((metric: string, i: number) => (
-              <span key={i} className="flex items-center gap-1.5 text-xs font-mono bg-accent/10 text-accent px-2.5 py-1 rounded-md">
-                <Activity size={12} />
-                {metric}
-              </span>
-            ))}
-          </div>
-        )}
+    {/* Content Container */}
+    <div className="w-full lg:w-[45%] flex flex-col justify-center">
+      <div className="flex justify-between items-start mb-4">
+        <div>
+          <h3 className="text-3xl font-display font-bold text-text-main group-hover:text-accent transition-colors duration-300">
+            {project.name}
+          </h3>
+          <p className="text-sm font-mono text-text-muted mt-2">{project.tagline}</p>
+        </div>
       </div>
 
-      <div className="flex flex-wrap gap-2 mt-auto">
+      <p className="text-base text-text-main/80 leading-relaxed mb-8">
+        {project.description}
+      </p>
+
+      {project.metrics && project.metrics.length > 0 && (
+        <ul className="space-y-2 mb-8">
+          {project.metrics.map((metric: string, i: number) => (
+            <li key={i} className="flex gap-3 text-sm text-text-main/80 items-start">
+              <span className="mt-2 w-1 h-1 rounded-full bg-accent shrink-0" />
+              <span>{metric}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <div className="flex flex-wrap gap-1.5 mb-8">
         {project.tech.map((t: string, i: number) => (
-          <span key={i} className="text-xs font-mono text-text-muted">
-            {t}{i < project.tech.length - 1 && <span className="ml-2 text-text-muted/30">|</span>}
+          <span key={i} className="px-2.5 py-1 rounded-md text-[10px] font-mono uppercase tracking-[0.14em] bg-text-muted/5 border border-text-muted/10 text-text-muted">
+            {t}
           </span>
         ))}
       </div>
+
+      <div className="flex gap-4 items-center">
+        {project.github && (
+          <a href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-text-muted/20 hover:border-accent hover:bg-accent/5 text-xs font-mono uppercase tracking-[0.18em] transition-all">
+             <GithubOriginal size={14} className="mr-1" />
+             GitHub
+          </a>
+        )}
+        {project.live && project.live !== "#" && (
+          <a href={project.live} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-accent/50 text-accent bg-accent/10 hover:bg-accent/20 hover:-translate-y-1 transition-all duration-300 text-xs font-mono uppercase tracking-[0.18em] shadow-[0_0_15px_rgba(99,102,241,0.2)]">
+             <ExternalLink size={14} className="mr-1" />
+             Live Site
+          </a>
+        )}
+      </div>
     </div>
   </motion.div>
-);
+  );
+};
 
 const CompactProjectCard = ({ project }: { project: ProjectData }) => (
   <motion.div
@@ -144,10 +186,14 @@ export default function Projects() {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-sm font-mono font-bold text-text-muted uppercase tracking-widest mb-12 flex items-center">
-          <span className="w-8 h-px bg-accent mr-4"></span>
-          Projects
-        </h2>
+        <div className="space-y-4 mb-24">
+          <div className="text-xs font-mono uppercase tracking-[0.3em] text-text-muted">
+            02 / Projects
+          </div>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-sans font-bold leading-[0.95] tracking-tight text-text-main">
+            Things built <span className="text-text-muted font-medium">with intent.</span>
+          </h2>
+        </div>
 
         <motion.div
           variants={listVariants}
@@ -157,7 +203,7 @@ export default function Projects() {
           className="space-y-8 mb-16"
         >
           {featuredProjects.map((project, idx) => (
-            <FeaturedProjectCard key={idx} project={project} />
+            <FeaturedProjectCard key={idx} project={project} index={idx} />
           ))}
         </motion.div>
 

@@ -35,6 +35,16 @@ export const skills: SkillsData = {
 
 export const experience: ExperienceData[] = [
   {
+    role: "Open Source Contributor",
+    company: "OWASP Foundation",
+    link: "https://owasp.org/",
+    location: "Remote",
+    duration: "Oct 2025 - Present · 9 mos",
+    bullets: [
+      "Contributed to OWASP Cornucopia, a mechanism in the form of a card game to assist software development teams identify security requirements in Agile, conventional and formal development processes. It is language, platform and technology-agnostic.",
+    ],
+  },
+  {
     role: "Founding Software Engineer",
     company: "BuildBazaarX",
     link: "https://buildbazaarx.com/",
@@ -78,6 +88,7 @@ export const projects: ProjectData[] = [
     live: "https://buildbazaarx.com/",
     github: null, // private repo
     featured: true,
+    image: "/buildbazaar.jpeg",
   },
   {
     name: "Tikki Trades",
@@ -88,6 +99,7 @@ export const projects: ProjectData[] = [
     live: "https://tikki-trades.vercel.app/",
     github: null,
     featured: true,
+    image: "/tikkitrades.jpeg",
   },
   {
     name: "Visual Learner",
@@ -131,21 +143,33 @@ export const projects: ProjectData[] = [
   },
 ];
 
-export const education: EducationData = {
-  degree: "B.Tech in Computer Science and Engineering",
-  institution: "The LNM Institute of Information and Technology (LNMIIT)",
-  location: "Jaipur, Rajasthan",
-  duration: "2023 – Expected 2027",
-  coursework: [
-    "Data Structures and Algorithms",
-    "Operating Systems",
-    "Database Management Systems",
-    "Computer Networks",
-    "Object Oriented Programming",
-    "Software Engineering",
-    "Natural Language Processing",
-  ],
-};
+export const education: EducationData[] = [
+  {
+    degree: "B.Tech in Computer Science and Engineering",
+    institution: "The LNM Institute of Information and Technology (LNMIIT)",
+    location: "Jaipur, Rajasthan",
+    duration: "2023 – Expected 2027",
+    coursework: [
+      "Data Structures and Algorithms",
+      "Operating Systems",
+      "Database Management Systems",
+      "Computer Networks",
+      "Object Oriented Programming",
+      "Software Engineering",
+      "Natural Language Processing",
+    ],
+  },
+  {
+    degree: "Higher Secondary Education (CBSE)",
+    institution: "Sunbeam School Varuna",
+    location: "Varanasi, Uttar Pradesh",
+    duration: "Apr 2015 – May 2022",
+    performance: [
+      "Class X: 97.4%",
+      "Class XII (PCM): 89.6%"
+    ]
+  }
+];
 
 export const achievements: AchievementData[] = [
   {
