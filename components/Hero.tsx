@@ -64,27 +64,14 @@ export default function Hero() {
     >
       <HeroBackground />
 
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
+      <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-8 w-full z-10">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.5 }}
-          className="mb-8 relative w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-accent/30 shadow-[0_0_25px_rgba(99,102,241,0.15)]"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex-1 w-full lg:max-w-2xl"
         >
-          <Image
-            src="/profile.jpeg"
-            alt={personal.name}
-            fill
-            className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
-            priority
-          />
-        </motion.div>
-
-        <motion.div
+          <motion.div
           initial={{ opacity: 0, x: -12 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
@@ -164,8 +151,24 @@ export default function Hero() {
             <FileText size={18} />
             <span>--resume</span>
           </a>
+          </motion.div>
         </motion.div>
-      </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ delay: 0.2, duration: 0.8, type: "spring" }}
+          className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-[350px] lg:h-[350px] rounded-full overflow-hidden border-4 border-accent/20 shadow-[0_0_50px_rgba(99,102,241,0.15)] flex-shrink-0"
+        >
+          <Image
+            src="/profile.jpeg"
+            alt={personal.name}
+            fill
+            className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+            priority
+          />
+        </motion.div>
+      </div>
 
       <motion.div
         initial={{ opacity: 0 }}
