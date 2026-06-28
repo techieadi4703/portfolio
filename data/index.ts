@@ -196,3 +196,12 @@ export const achievements: AchievementData[] = [
   //   detail: "Selected for industry internship at a global semiconductor leader",
   // },
 ];
+
+export const currentFocus = {
+  building: "BuildBazaarX",
+  buildingDetail: "Multi-role construction marketplace",
+  buildingLink: "https://buildbazaarx.com/",
+  learning: "System Design & Go",
+  lookingFor: "SDE Internships / Full-time 2027",
+  location: "Jaipur, Rajasthan 🇮🇳",
+};

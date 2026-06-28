@@ -58,3 +58,12 @@ export interface AchievementData {
   title: string;
   detail: string;
 }
+
+export interface CurrentFocusData {
+  building: string;
+  buildingDetail: string;
+  buildingLink: string;
+  learning: string;
+  lookingFor: string;
+  location: string;
+}

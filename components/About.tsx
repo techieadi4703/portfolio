@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { personal } from "@/data";
 import { Code2, Briefcase, Trophy } from "lucide-react";
+import GitHubStats from "@/components/GitHubStats";
 
 export default function About() {
   return (
@@ -57,6 +58,10 @@ export default function About() {
             </div>
           </div>
         </div>
+
+        {/* Live GitHub stats widget */}
+        <GitHubStats />
+
       </motion.div>
     </section>
   );
