@@ -23,11 +23,11 @@ export default function About() {
           </h2>
         </div>
         
-        <div className="text-text-main/90 text-base md:text-lg leading-relaxed mb-10 max-w-3xl font-sans">
+        <div className="text-text-main/90 text-base md:text-lg leading-relaxed mb-10 w-full font-sans">
           {personal.bio}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono text-sm max-w-3xl">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono text-sm w-full">
           <div className="flex items-center gap-3 p-4 bg-text-muted/5 border border-text-muted/10 rounded-lg">
             <div className="text-accent">
               <Briefcase size={20} />
