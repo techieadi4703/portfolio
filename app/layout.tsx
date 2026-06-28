@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
+import Loader from "@/components/Loader";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -50,6 +51,7 @@ export default function RootLayout({
         </div>
         
         <div className="bg-noise z-[-2]"></div>
+        <Loader />
         <CustomCursor />
         <ScrollProgress />
         {children}

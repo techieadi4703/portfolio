@@ -121,11 +121,11 @@ export default function Skills() {
               <h3 className="text-[10px] font-mono uppercase tracking-[0.3em] text-accent mb-6">
                 {category}
               </h3>
-              <div className="flex flex-wrap gap-2">
+              <div className={`flex gap-2 ${category === "databases" ? "flex-col" : "flex-wrap"}`}>
                 {(items as string[]).map((skill: string) => (
                   <div
                     key={skill}
-                    className="flex items-center gap-2 px-2.5 py-1.5 bg-white/5 border border-white/5 rounded-md text-[10px] font-mono uppercase tracking-widest text-text-muted group-hover:border-white/10 group-hover:text-white/90 transition-all duration-300"
+                    className={`flex items-center gap-2 px-2.5 py-1.5 bg-white/5 border border-white/5 rounded-md text-[10px] font-mono uppercase tracking-widest text-text-muted group-hover:border-white/10 group-hover:text-white/90 transition-all duration-300 ${category === "databases" ? "w-full justify-start" : ""}`}
                   >
                     {getIcon(skill)}
                     <span>{skill}</span>
