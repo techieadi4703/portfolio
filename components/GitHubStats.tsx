@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { currentFocus } from "@/data";
 import { ExternalLink, MapPin, Search, Briefcase } from "lucide-react";
 
@@ -27,32 +27,31 @@ function Skeleton({ className = "" }: { className?: string }) {
 // ─── Individual SVG stat image card ───────────────────────────────────────────
 
 function StatCard({ src, alt, aspectClass = "p-4" }: StatCardProps) {
-  const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    // If the image failed before React hydrated (e.g., adblocker)
+    if (imgRef.current?.complete && imgRef.current.naturalHeight === 0) {
+      setErrored(true);
+    }
+  }, []);
 
   return (
-    <div className={`relative rounded-xl overflow-hidden border border-text-muted/10 bg-[#0A0A0A] flex items-center justify-center ${aspectClass}`}>
-      {/* Skeleton shown until image loads */}
-      {!loaded && !errored && (
-        <Skeleton className="absolute inset-0 rounded-none border-none" />
-      )}
-
+    <div className={`relative rounded-xl overflow-hidden border border-text-muted/10 bg-[#0A0A0A] flex items-center justify-center min-h-[160px] ${aspectClass}`}>
       {errored ? (
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center p-4 text-center">
           <span className="text-[10px] font-mono text-text-muted/40 uppercase tracking-widest">
-            Stats unavailable
+            Stats temporarily unavailable
           </span>
         </div>
       ) : (
         <img
+          ref={imgRef}
           src={src}
           alt={alt}
-          loading="lazy"
-          onLoad={() => setLoaded(true)}
           onError={() => setErrored(true)}
-          className={`w-full h-auto object-contain transition-opacity duration-500 ${
-            loaded ? "opacity-100" : "opacity-0"
-          }`}
+          className="w-full h-auto object-contain relative z-10"
         />
       )}
     </div>
