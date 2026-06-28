@@ -77,7 +77,7 @@ export default function GitHubStats() {
   ].join("&");
 
   return (
-    <div className="mt-10 max-w-3xl">
+    <div className="mt-10 w-full">
       {/* Section label */}
       <div className="text-xs font-mono uppercase tracking-[0.3em] text-text-muted mb-5 flex items-center gap-3">
         <span>GitHub Activity</span>
