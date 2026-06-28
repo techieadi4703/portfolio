@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const navItems = [
   { name: "About", href: "#about" },
@@ -63,25 +64,34 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu Dropdown */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-[65px] bg-base z-30 flex flex-col p-6 space-y-6 border-b border-text-muted/10">
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={cn(
-                "text-lg font-mono uppercase tracking-widest",
-                activeSection === item.href.substring(1)
-                  ? "text-accent"
-                  : "text-text-muted hover:text-text-main"
-              )}
-            >
-              {item.name}
-            </a>
-          ))}
-        </div>
-      )}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="lg:hidden fixed inset-0 top-[65px] bg-base z-30 flex flex-col p-6 space-y-6 border-b border-text-muted/10"
+          >
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={cn(
+                  "text-lg font-mono uppercase tracking-widest",
+                  activeSection === item.href.substring(1)
+                    ? "text-accent"
+                    : "text-text-muted hover:text-text-main"
+                )}
+              >
+                {item.name}
+              </a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Desktop Left Rail */}
       <nav className="hidden lg:flex fixed top-0 left-0 h-screen w-64 flex-col justify-center pl-12 pr-6 z-40">

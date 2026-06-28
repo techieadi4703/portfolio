@@ -5,7 +5,6 @@ export interface PersonalData {
   bio: string;
   location: string;
   email: string;
-  phone: string;
   links: {
     github: string;
     linkedin: string;

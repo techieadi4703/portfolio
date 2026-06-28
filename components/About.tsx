@@ -13,10 +13,14 @@ export default function About() {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-sm font-mono font-bold text-text-muted uppercase tracking-widest mb-8 flex items-center">
-          <span className="w-8 h-px bg-accent mr-4"></span>
-          About
-        </h2>
+        <div className="space-y-4 mb-16">
+          <div className="text-xs font-mono uppercase tracking-[0.3em] text-text-muted">
+            00 / About
+          </div>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-sans font-bold leading-[0.95] tracking-tight text-text-main">
+            Who I am <span className="text-text-muted font-medium">& what I build.</span>
+          </h2>
+        </div>
         
         <div className="text-text-main/90 text-base md:text-lg leading-relaxed mb-10 max-w-3xl font-sans">
           {personal.bio}

@@ -7,12 +7,22 @@ export default function Loader() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Add a minimum display time for the loader
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1800);
+    const done = () => setIsLoading(false);
 
-    return () => clearTimeout(timer);
+    if (document.readyState === "complete") {
+      // Page already loaded (e.g. cached) — still show loader briefly
+      const timer = setTimeout(done, 500);
+      return () => clearTimeout(timer);
+    }
+
+    // Cap at 800ms maximum even if load is slow
+    const maxTimer = setTimeout(done, 800);
+    window.addEventListener("load", done, { once: true });
+
+    return () => {
+      clearTimeout(maxTimer);
+      window.removeEventListener("load", done);
+    };
   }, []);
 
   return (
@@ -35,21 +45,21 @@ export default function Loader() {
               <span className="text-white">Aditya</span>
               <span className="text-accent">.</span>
             </motion.div>
-            
+
             <motion.div
               initial={{ width: 0, opacity: 0 }}
               animate={{ width: "100%", opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeInOut" }}
               className="h-[2px] bg-accent/30 mt-6 rounded-full relative overflow-hidden w-full max-w-[200px]"
             >
-              <motion.div 
+              <motion.div
                 className="absolute inset-y-0 left-0 bg-accent"
                 initial={{ x: "-100%", width: "100%" }}
                 animate={{ x: "100%" }}
-                transition={{ 
-                  duration: 1.2, 
-                  repeat: Infinity, 
-                  ease: "easeInOut" 
+                transition={{
+                  duration: 1.2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
                 }}
               />
             </motion.div>

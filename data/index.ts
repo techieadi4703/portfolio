@@ -11,10 +11,9 @@ export const personal: PersonalData = {
   name: "Aditya Srivastava",
   title: "Full Stack Developer",
   tagline: "Building scalable web applications with React, Node.js | AI Enthusiast",
-  bio: `I'm a third-year Computer Science student at The LNM Institute of Information Technology, Jaipur. I enjoy building scalable full-stack applications and backend systems using React, Node.js, Express, and MongoDB. My interests span distributed systems, APIs, microservices, AI-powered applications, and problem-solving through DSA. I have industry experience from internships where I worked on production features, broker API integrations, scalable backend services, and modern frontend interfaces.`,
+  bio: `Founding Software Engineer at BuildBazaarX (DPIIT-recognized startup) and third-year CS student at LNMIIT Jaipur. I architect and ship full-stack products end-to-end — from system design to production deployment. LeetCode Knight (Top 3.23%, 600+ problems) and hackathon winner with a bias for building things that actually get used. Previously at OptionX/Ratel Fintech (production fintech systems). Interests: distributed systems, AI-powered products, and making complex engineering feel simple.`,
   location: "Jaipur, Rajasthan, India",
   email: "techie.adi47@gmail.com",
-  phone: "+91 7309958494",
   links: {
     github: "https://github.com/techieadi4703",
     linkedin: "https://www.linkedin.com/in/techieadi4703",

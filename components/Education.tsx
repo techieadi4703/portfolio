@@ -25,7 +25,7 @@ export default function Education() {
       >
         <div className="space-y-4 mb-16">
           <div className="text-xs font-mono uppercase tracking-[0.3em] text-text-muted">
-            03 / Education
+            04 / Education
           </div>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-sans font-bold leading-[0.95] tracking-tight text-text-main">
             Academic <span className="text-text-muted font-medium">foundation.</span>
