@@ -26,7 +26,7 @@ function Skeleton({ className = "" }: { className?: string }) {
 
 // ─── Individual SVG stat image card ───────────────────────────────────────────
 
-function StatCard({ src, alt, aspectClass = "" }: StatCardProps) {
+function StatCard({ src, alt, aspectClass = "p-4" }: StatCardProps) {
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
 
@@ -93,8 +93,8 @@ export default function GitHubStats() {
         </a>
       </div>
 
-      {/* Top row: Stats + Top Languages */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+      {/* Top row: Stats + Top Languages + Streak */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-3">
         {/* General Stats */}
         <StatCard
           src={`${BASE}?username=${USERNAME}&show_icons=true&count_private=true&${params}&hide=contribs&include_all_commits=true&rank_icon=github`}
@@ -106,10 +106,8 @@ export default function GitHubStats() {
           src={`${BASE}/top-langs?username=${USERNAME}&layout=compact&${params}&langs_count=6&hide=html,css`}
           alt="Most used languages"
         />
-      </div>
 
-      {/* Middle row: Streak stats (full width on its own row) */}
-      <div className="mb-3">
+        {/* Streak stats */}
         <StatCard
           src={`${STREAK}/?user=${USERNAME}&theme=transparent&hide_border=true&stroke=94A3B8&ring=6366F1&fire=6366F1&currStreakLabel=6366F1&sideLabels=94A3B8&dates=94A3B8&sideNums=F1F5F9&currStreakNum=F1F5F9&background=00000000`}
           alt="GitHub contribution streak"
